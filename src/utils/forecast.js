@@ -8,7 +8,7 @@ const forecast = (latitude, longitude, callback) => {
         } else if (body.error) {
             callback('No se puede encontrar el pronostico del tiempo. Intente otra busqueda' + url, undefined)
         } else {
-            callback(undefined, 'Actualmente se encuentra '+ body.current.weather_descriptions + ' y la temperatura es de '+ body.current.temperature + '°C al exterior y se siente ' + body.current.feelslike + '°C')
+            callback(undefined, 'Actualmente se encuentra '+ body.current.weather_descriptions + ', la temperatura actual es de '+ body.current.temperature + '°C, con una sensación térmica de ' + body.current.feelslike + '°C y la humedad es del ' + body.current.humidity + '%')
             }
     })
 }
