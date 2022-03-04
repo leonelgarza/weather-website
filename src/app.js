@@ -39,8 +39,8 @@ app.get('/about',(req, res)=> {
 app.get('/help',(req, res)=> {
     res.render('help', {
         title: 'Help page',
-        name: 'Leonel Garza',
-        HelpMsg: 'FAQs y ayuda'
+        name: 'Leonel Garza Loperena',
+        HelpMsg: 'FAQs and help'
 
     })
 })
@@ -48,14 +48,14 @@ app.get('/help',(req, res)=> {
 app.get('/weather', (req, res)=>{
     if (!req.query.address){
         return res.send({
-            error: '¡Debes introduccir una dirección para la busqueda!'})
+            error: 'You must enter an address for the search!'})
     } else {
         geocode(req.query.address,  (error, {latitude, longitude, location} = {}) => {
             if (error) {
                 return res.send({
                     error})
             } else  {
-            forecast(latitude, longitude, (error, forecastData) => {
+            forecast(latitude, longitude, (error, forecastData, weatherLogo) => {
                 if (error){
                     return res.send({
                         error})
@@ -63,8 +63,10 @@ app.get('/weather', (req, res)=>{
                     res.send({
                         forecast: forecastData,
                         location,
-                        address: req.query.address
+                        address: req.query.address,
+                        weatherLogo: weatherLogo[0]
                     })
+                    console.log(weatherLogo[0])
                 }
             })
             }
@@ -89,7 +91,7 @@ app.get('/help/*', (req, res)=>{
     res.render('404', {
         title: 'ERROR 404!',
         name: 'Leonel Garza',
-        ErrorMsg: 'Articulo de ayuda no encontrado'
+        ErrorMsg: 'Help article not found'
 
     })
 })
@@ -98,7 +100,7 @@ app.get('*', (req, res)=>{
     res.render('404', {
         title: 'ERROR 404!',
         name: 'Leonel Garza',
-        ErrorMsg: 'Pagina no encontrada'
+        ErrorMsg: 'Page not found'
 
     })
 })
