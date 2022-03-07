@@ -10,11 +10,16 @@
         <div class="main-content">
             {{>header}}
             <p>Use this site to get your weather forecast!</p>
-             <br>
-            </p>
             <form>
+                <br>
                 <input placeholder="Address">
                 <button>Search!</button>
+                <br>
+                    <input class = "radio" type="radio" id="C" name="fav_unit" checked value="C">
+                    <label for="C">C</label>
+                    <input class = "radio" type="radio" id="F" name="fav_unit" value="F">
+                    <label for="F">F</label>
+                <br>
             </form>
              <br>
             <p id="msg1"></p>
